@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title><?php echo (isset($title) ? $title : 'Not found') ;  ?> - Afrib Design</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="assets/admin-assets/plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="assets/admin-assets/dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!--Custome-->
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <script src="assets/ckeditor/ckeditor.js"></script>
+
+  <style>
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+      color: red;
+    }
+
+    .dot {
+      height: 10px;
+      width: 10px;
+      background-color: green;
+      border-radius: 50%;
+      display: inline-block;
+    }
+  </style>
+</head>
+  <body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+      <!-- Navbar -->
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+          </li>
+          <li class="nav-item d-none d-sm-inline-block">
+            <a href="/" class="nav-link" target="_blank">Home</a>
+          </li>
+          
+        </ul>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+              <i class="far fa-user"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+              <div class="dropdown-divider"></div>
+
+              <a href="#" class="dropdown-item">
+                <div class="p-3">
+                  <i class="fa fa-key"></i> 
+                  <span class="ml-3">Change Password</span>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+                <!-- 
+                <a href=""
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();" class="dropdown-item">
+                    <div class="p-3">
+                    <i class="nav-icon fa fa-power-off text-red"></i>
+                    <span class="ml-3">Logout</span>
+                    </div>
+                </a> -->
+
+            </div>
+          </li>
+        </ul>
+      </nav>
+       <?php include $config['VIEW_PATH'].'includes/dashboard_sidebar.phtml'; ?>

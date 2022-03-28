@@ -1,0 +1,66 @@
+<?php 
+
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $postData['name'] = $_POST['name'];
+        $postData['email'] = $_POST['email'];
+        $postData['password'] = $_POST['password'];
+        $postData['c_pwd'] = $_POST['password_confirmation'];
+        
+        register($postData);
+    }
+
+?>
+
+<section>
+	<div class="container mt-5 mb-2">
+		<div class="row">
+            <?php if(!empty($genErr)) : ?>
+                <div class="alert alert-danger" role="alert">
+                   <p><?php echo $genErr; ?></p> 
+                </div>
+            <?php endif; ?>
+        
+            <div class="col-md-10 col-lg-8 col-xl-6 mx-auto card bg-dark text-white rounded">
+                <div class="bg-primary-soft rounded p-4 p-sm-5">
+                    <h2>Create your free account </h2>
+                    <!-- Form START -->
+                    <form action="<?php $config['VIEW_PATH']. $page . '.phtml'; ?>" method="POST" class="mt-4">
+                        <!-- name -->
+                        <div class="mb-3">
+                            <label class="form-label"  for="exampleInputEmail1">Full name</label>
+                            <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Full name"
+                            value="<?php echo isset($_POST["name"]) ? $_POST['name'] : ''; ?>">
+                            <span class="text-danger help-block"><?php echo $name_err; ?></span>
+                        </div>
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label"  for="exampleInputEmail1">Email address</label>
+                            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail"
+                            value="<?php echo isset($_POST["email"]) ? $_POST['email'] : ''; ?>">
+                            <span class="text-danger help-block"><?php echo $email_err; ?></span>
+                        </div>
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label class="form-label" for="exampleInputPassword1">Password</label>
+                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="*********">
+                            <span class="text-danger help-block"><?php echo $password_err; ?></span>
+                        </div>
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label class="form-label" for="exampleInputPassword2">Confirm Password</label>
+                            <input type="password" name="password_confirmation" class="form-control" id="exampleInputPassword2" placeholder="*********">
+                            <span class="text-danger help-block"><?php echo $c_password_err; ?></span>
+                        </div>
+                        <!-- Button -->
+                        <div class="row align-items-center">
+                            <div class="col-sm-4">
+                                <button type="submit" class="btn btn-primary">Sign me up</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+	</div>
+</section>

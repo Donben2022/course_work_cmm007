@@ -1,0 +1,21 @@
+
+<?php 
+     if( strpos($view, 'user_')) {
+        require($config['VIEW_PATH'].'includes/dashboard_header.phtml');
+    }elseif(strpos($view, 'admin_dashboard')){
+        require($config['VIEW_PATH'].'includes/admin-header.phtml');
+    }
+?>
+
+    <div class="content-wrapper">
+        <?php include $main_content; ?>
+    </div>     
+<?php 
+
+    if( strpos($view, 'user_')) {
+        require($config['VIEW_PATH'].'includes/dashboard_footer.phtml');
+    }elseif(strpos($view, 'admin_dashboard')){
+        require($config['VIEW_PATH'].'includes/admin-footer.phtml');
+    }
+?>
+
