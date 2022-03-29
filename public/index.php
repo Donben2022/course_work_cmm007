@@ -30,7 +30,11 @@ if(file_exists($view)){
     $main_content =  $view; 
     if( strpos($view, 'user_') !== false ) {
         include $config['VIEW_PATH']. '/layouts/dashboard.phtml';
-    }else{
+    }elseif(strpos($view, 'admin_') !== false ){
+        include $config['VIEW_PATH']. '/layouts/dashboard.phtml';
+
+    }
+    else{
         include $config['VIEW_PATH']. '/layouts/layout.phtml';
     }
     

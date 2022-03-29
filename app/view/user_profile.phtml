@@ -1,0 +1,93 @@
+<?php
+	if(isset($_GET['access'])){
+		if(!empty($_GET['access'])){
+			//get user from model
+			$user = checkAccess($_GET['access']);
+			//fetch story from model function getstories
+			$stories = getStories($user['id']);
+		}
+	}
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $postData['title'] = $_POST['title'];
+        $postData['category_id'] = $_POST['category_id'];
+        $postData['location_id'] = $_POST['location_id'];
+        $postData['story'] = $_POST['story'];
+        $postData['user_id'] = $user['id'];
+        $postData['image'] = $_FILES["story_image"];
+        
+        createStory($postData);
+    }
+
+    // return var_dump(getstoriesFull($user['id']));
+?>
+
+
+<div class="content">
+  <div class="container">
+      <?php if(!empty($success)) : ?> 
+          <div class="alert alert-success alert-block">
+              <button type="button" class="close" data-dismiss="alert">×</button> 
+              <strong><?php echo $success; ?></strong>
+          </div>
+      <?php endif; ?>
+
+      <?php if(!empty($error)) : ?> 
+          <div class="alert alert-danger alert-block">
+              <button type="button" class="close" data-dismiss="alert">×</button> 
+              <strong><?php echo $error; ?></strong>
+          </div>
+      <?php endif; ?>
+
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <div class="card mt-3">
+          <div class="card-body">
+            <div class="card">
+              <?php if(isset($user['image'])) : ?> 
+                  <div class="d-flex justify-content-center">
+                    <img width="160px" height="160px" class="img-circle" src="<?php echo $user['image']; ?>" alt="Card image cap">
+                  </div>
+              <?php else: ?>
+                <div class="d-flex justify-content-center">
+                  <img class="img-circle" width="160px" height="160px" src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg" alt="User Avatar">
+                </div>
+              <?php endif; ?>
+                <h3 class="text-center"><?php echo $user['name']; ?></h3>
+                <br><br>
+
+                <div class="card-body">
+                    <form action="#" enctype="multipart/form-data" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>                     
+                            <input class="form-control" value="<?php echo $user['name']; ?>" type="text" name="name">
+                        </div> 
+                        <div class="form-group">
+                            <label for="name">email</label>                     
+                            <input class="form-control" value="<?php echo $user['email']; ?>" type="text" name="email">
+                        </div>
+                        <?php if( $user['role'] != 1) : ?>
+                            <div class="form-group">
+                                <label for="name">Special login link</label>                     
+                                <input readonly class="form-control" value="<?php echo $user['link']; ?>" type="text">
+                            </div>
+                        <?php else: ?>
+                          <div class="form-group">
+                              <label for="profile_pic">Change profile picture</label>
+                              <input class="form-control-file" type="file" name="profile_pic" >  
+                          </div>
+                        <?php endif ?>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+              </div>
+          </div>
+        </div><!-- /.box -->
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+</div>

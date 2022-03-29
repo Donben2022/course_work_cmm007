@@ -1,20 +1,14 @@
 <?php
-	if(isset($_GET['access'])){
-		if(!empty($_GET['access'])){
+    if(isset($_GET['story'])){
+		if(!empty($_GET['story'])){
 			//get user from model
-			$user = checkAccess($_GET['access']);
-			//fetch story from model function getstories
-			$stories = getStories($user['id']);
-		}
-	}
-    if(isset($_GET['id'])){
-		if(!empty($_GET['id'])){
-			//get user from model
-			$story = getSingleStory($_GET['id'])[0];
+			$story = getSingleStory($_GET['story'])[0];
 			//fetch story from model function getstories
 			// $stories = getStories($user['id']);
 		}
 	}
+
+    $user = checkAccess($story['user_id']);
 
 ?>
 
@@ -57,7 +51,7 @@
                         <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                             <?php echo $location['country'] ?>
                             <span class="badge badge-primary badge-pill">
-                                <?php echo count( getstorybylocation($location['id']) ); ?>
+                                <?php echo count(getstorybylocation($location['id']) ); ?>
 
                             </span>
                         </a>

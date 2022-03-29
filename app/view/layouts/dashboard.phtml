@@ -2,7 +2,7 @@
 <?php 
      if( strpos($view, 'user_')) {
         require($config['VIEW_PATH'].'includes/dashboard_header.phtml');
-    }elseif(strpos($view, 'admin_dashboard')){
+    }elseif(strpos($view, 'admin_')){
         require($config['VIEW_PATH'].'includes/admin-header.phtml');
     }
 ?>
@@ -14,7 +14,7 @@
 
     if( strpos($view, 'user_')) {
         require($config['VIEW_PATH'].'includes/dashboard_footer.phtml');
-    }elseif(strpos($view, 'admin_dashboard')){
+    }elseif(strpos($view, 'admin_')){
         require($config['VIEW_PATH'].'includes/admin-footer.phtml');
     }
 ?>

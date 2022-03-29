@@ -1,11 +1,38 @@
+<?php 
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $postData['email'] = $_POST['email'];
+        $postData['password'] = $_POST['password'];
+        
+        echo login($postData);
+    } 
+
+?>
+
+
 <section>
+	<div class="container">
+	<?php if(!empty($success)) : ?> 
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button> 
+                <strong><?php echo $success; ?></strong>
+            </div>
+        <?php endif; ?>
+
+        <?php if(!empty($error)) : ?> 
+            <div class="alert alert-danger alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button> 
+                <strong><?php echo $error; ?></strong>
+            </div>
+        <?php endif; ?>
+	</div>
 	<div class="container mt-5 mb-2 py-5">
 		<div class="row">
 			<div class="col-md-10 col-lg-8 col-xl-6 mx-auto card bg-dark text-white rounded">
 				<div class="p-4 p-sm-5 bg-primary-soft rounded">
 					<h2 class="text-center">Login to afrib-design</h2>
 					<!-- Form START -->
-					<form action="#" method="POST" class="mt-4">
+					<form action="<?php $config['VIEW_PATH']. $page . '.phtml'; ?>" method="POST" class="mt-4">
 						<!-- Email -->
 						<div class="mb-3">
 							<label class="form-label" for="exampleInputEmail1">Email address</label>

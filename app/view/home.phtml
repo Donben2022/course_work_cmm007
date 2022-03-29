@@ -1,17 +1,116 @@
+ <?php
+if(isset($_GET['access'])){
+    if(!empty($_GET['access'])){
+        //get user from model
+        $user = checkAccess($_GET['access']);
+        //fetch story from model function getstories
+    }
+}
+    $stories = getstoriesFull();
+    $categories = getAllCategories();
+    $locations = getAllLocations();
+
+
+
+?>
+  
+  
   <!--banner section START -->
-<section class="p-0 d-flex justify-content-center align-items-center mb-4" style="background-image: url('https://media.istockphoto.com/photos/young-man-arms-outstretched-by-the-sea-at-sunrise-enjoying-freedom-picture-id1285301614?b=1&k=20&m=1285301614&s=170667a&w=0&h=tDEC2-p91cZiNU5C19sVhB9L08PmaH5wIijCvRDalCI=');background-position: center;background-repeat: no-repeat; background-size: cover; height: 457px;">
+
+
+  <section class="p-0 d-flex justify-content-center align-items-center mb-4" style="background-image: url('https://media.istockphoto.com/photos/young-man-arms-outstretched-by-the-sea-at-sunrise-enjoying-freedom-picture-id1285301614?b=1&k=20&m=1285301614&s=170667a&w=0&h=tDEC2-p91cZiNU5C19sVhB9L08PmaH5wIijCvRDalCI=');background-position: center;background-repeat: no-repeat; background-size: cover; height: 457px;">
         <div class="d-flex justify-content-center align-items-center card-body">
             <div class="card-title px-4" style="width: 50%; height: 220px; background-color: rgb(0,0,0, 0.5); color: #fff; border-radius: 10px;" >
                 <h3 class="text-center mt-5">Welcome to Afrib Travel Stories</h3>
                 <p class="mt-3 text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, tempore.</p>
                 <p class="d-flex justify-content-center">
-                    <a class="btn btn-primary btn-sm" href="{{route('register')}}">Get started</a>
+                    <a class="btn btn-primary btn-sm" href="?page=register">Get started</a>
                 </p>
                 <br>
             </div>
         </div>
     </section>
-        <!--banner section END -->
-        <section class="mt-3">
-            <center><?php echo $description ?></center>
-        </section>
+    
+   <!-- featured story section START -->
+<section class="container mt-4 mb-4" style="background: #fff; height: 550px;">
+	<div class="row">
+		<?php if(count($stories) > 0) : ?>
+			<div class="col-md-7 col-sm-12 col-xs-12"> 
+				<div class="card" style="background-image: url('<?php echo $stories[0]['image']; ?>');background-position: center;background-repeat: no-repeat; background-size: cover; height: 500px;">
+					<div class="d-flex justify-content-center align-items-center card-body">
+						<div class="card-title px-4" style="width: 70%; height: 50%; background-color: rgb(0,0,0, 0.5); color: #fff; border-radius: 10px;" >
+							<h3 class="text-center"><?php echo $stories[0]['title']; ?></h3>
+							<p>
+                                <?php echo html_entity_decode(substr(strip_tags($stories[0]['story']) , 0, 100)) ?>
+                            </p>
+							<p class="d-flex justify-content-center">
+								<a class="btn btn-primary btn-sm" href="?page=preview&story=<?php echo $story['id']; ?>">Read story</a>
+							</p>
+							<br>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-5 col-sm-12 col-xs-12">
+				<div class="d-flex flex-column">
+					<?php foreach( $stories = array_slice($stories, 0, 2)as $story ) : ?>
+						<div class="card mb-3" style="height: 250px; background-image: url('<?php echo $story['image']; ?>');background-position: center;background-repeat: no-repeat; background-size: cover;">
+							<div class="d-flex justify-content-center align-items-center card-body">
+								<div class="card-title px-4" style="width: 70%; height: 70%; background-color: rgb(0,0,0, 0.5); color: #fff; border-radius: 10px;" >
+                                    <h3 class="text-center"><?php echo $story['title'] ?></h3>
+                                    <p>
+                                        <?php echo html_entity_decode(substr(strip_tags($story['story']) , 0, 50)); ?>
+                                    </p>
+                                    <p class="d-flex justify-content-center">
+                                        <a class="btn btn-primary btn-sm" href="?page=preview&story=<?php echo $story['id']; ?>">Read story</a>
+                                    </p>
+                                    <br>
+                                </div>
+							</div>
+						</div>
+					<?php endforeach; ?>
+				</div>
+				
+			</div>
+		<?php else: ?>
+			<h3 class="text-center"> No stories recorded yet</h3>
+		<?php endif; ?>
+	</div>
+	<div class="row mt-4">
+		<div class="card mb-3">
+			<div class="row g-0">
+                <?php if(count($stories) > 0) : ?>
+                    <?php foreach($stories = array_slice($stories, 0, 5) as $story): ?>
+                        <div class="col-md-4">
+						<img src="<?php echo $story['image']; ?>" width="200px" height="120px" alt="story image">
+						</div>
+						<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title"><?php echo $story['title'] ?></h5>
+							<p class="card-text">
+                                <?php echo html_entity_decode(substr(strip_tags($story['story']) , 0, 120)) ?>
+							<p>
+								<a class="btn btn-primary btn-sm" href="?page=preview&story=<?php echo $story['id']; ?>">View Story</a>
+							</p>
+							<p class="card-text">
+								<small class="text-muted">
+									<strong>Date</strong> <?php echo $story['reg_date']; ?>
+								</small>
+							</p>
+						</div>
+					</div>
+					<hr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <h4 class="text-center">No Stories yet</h4>
+                <?php endif; ?>
+			</div>
+			
+		</div>
+	</div>
+	<div class="d-flex justify-content-center my-5">
+		<a href="/" class="btn btn-outline-primary btn-lg">Load More</a>
+	</div>
+</section>
+<!-- featured section END -->
+
