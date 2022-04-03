@@ -7,7 +7,6 @@
 			//fetch story from model function getstories
 			$stories = getStories($user['id']);
 		}
-
 	}
 
 ?>
@@ -81,7 +80,7 @@
 			  <ul class="nav nav-treeview">
                 <?php if($user['role'] == 1) : ?> 
 					<li class="nav-item">
-						<a href="" class="nav-link ml-3">
+						<a href="?page=user_stories&access=<?php echo $_GET['access']; ?>" class="nav-link ml-3">
 						<i class="far fa-circle nav-icon"></i>
 						<p>All Stories</p>
 						</a>
@@ -100,7 +99,7 @@
 					</li>
 				<?php else: ?>
 				  <li class="nav-item">
-                        <a href="?page=user_stories&access=xantha982" class="nav-link ml-3">
+                        <a href="?page=user_stories&access=<?php echo $_GET['access']; ?>" class="nav-link ml-3">
                         <i class="far fa-circle nav-icon"></i>
                         <p>All Stories</p>
                         </a>
@@ -112,7 +111,7 @@
             <?php if($user['role'] == 0) : ?> 
 		  
                 <li class="nav-item">
-                    <a href="?page=user_profile&access=xantha982" class="nav-link">
+                    <a href="?page=user_profile&access=<?php echo $_GET['access']; ?>" class="nav-link">
                         <i class="nav-icon fa fa-product-hunt text-yellow"></i>
                         <p>Profile</p>
                     </a>
@@ -120,7 +119,7 @@
 			<?php else: ?>
 
                 <li class="nav-item">
-                    <a href="?page=admin_settings&access=xantha982" class="nav-link">
+                    <a href="?page=admin_settings&access=<?php echo $_GET['access']; ?>" class="nav-link">
                     <i class="nav-icon fa fa-cogs text-pink"></i>
                     <p>Setting</p>
                     </a>
