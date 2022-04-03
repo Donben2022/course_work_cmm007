@@ -44,7 +44,7 @@ if(isset($_GET['access'])){
                                 <?php echo html_entity_decode(substr(strip_tags($stories[0]['story']) , 0, 100)) ?>
                             </p>
 							<p class="d-flex justify-content-center">
-								<a class="btn btn-primary btn-sm" href="?page=preview&story=<?php echo $story['id']; ?>">Read story</a>
+								<a class="btn btn-primary btn-sm" href="?page=preview&story=<?php echo $stories[0]['id']; ?>">Read story</a>
 							</p>
 							<br>
 						</div>
